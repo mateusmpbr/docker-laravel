@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+    app:
+        build:
+          args:
+            user: mateus
+            uid: 1000
+          context: ./
+          dockerfile: Dockerfile
+        image: php-fpm
+        container_name: php-fpm-container
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+          - ./:/var/www
+        networks:
+          - laravel-network
+
+    db:
+        image: mysql:8.0.20
+        container_name: mysql-container
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+            - mysql-data:/var/lib/mysql
+        command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        networks:
+            - laravel-network
+
+    nginx:
+        image: nginx:1.17-alpine
+        container_name: nginx-container
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - laravel-network
+
+    phpmyadmin:
+        depends_on:
+            - db
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin-container
+        restart: unless-stopped
+        ports:
+            - 8888:80
+        networks:
+            - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
+
+volumes:
+    mysql-data:
