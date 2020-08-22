@@ -1,4 +1,4 @@
-# laravel-with-docker
+# docker-laravel
 Projeto prático, criado com o inuito de entender a utilização de containers no desenvolvimento web.
 
 O projeto possui:
