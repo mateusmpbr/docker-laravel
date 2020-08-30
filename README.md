@@ -1,5 +1,5 @@
 # docker-laravel
-Projeto prático, criado com o inuito de entender a utilização de containers no desenvolvimento web.
+Projeto prático, criado com o inuito de entender a utilização de contêineres no desenvolvimento web.
 
 O projeto possui:
 - Dockerfile e docker-compose.yml com imagens e configurações de php, nginx, mysql e phpmyadmin
