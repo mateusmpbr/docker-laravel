@@ -1,7 +1,7 @@
 # docker-laravel
-Projeto prático, criado com o inuito de entender a utilização de contêineres no desenvolvimento web.
+Practical project created with the purpose of understanding how to use containers in web development.
 
-O projeto possui:
-- Dockerfile e docker-compose.yml com imagens e configurações de php, nginx, mysql e phpmyadmin
-- buildApp.sh e initDocker.sh para a configuração inicial do sistema e para o gerenciamento de contêineres
-- Sistema de autenticação construído em Laravel e Boostrap, a partir da dependência laravel/ui
+The project includes:
+- A Dockerfile and docker-compose.yml with images and configurations for PHP, Nginx, MySQL, and phpMyAdmin
+- buildApp.sh and initDocker.sh for the system’s initial setup and container management
+- An authentication system built with Laravel and Bootstrap, using the laravel/ui package
